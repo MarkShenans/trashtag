@@ -17,6 +17,4 @@ def index():
     return render_template(template, object_list=object_list)
 
 if __name__ == '__main__':
-    objlist = get_csv()
-   # app.run(debug=True, use_reloader=True)
-    
+    app.run(debug=True, use_reloader=True)

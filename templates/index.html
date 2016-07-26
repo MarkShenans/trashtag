@@ -3,6 +3,19 @@
     <head></head>
     <body>
         <h1>Trashtag</h1>
-		{{ object_list }}
+		<table border=1 cellpadding=7>
+            <tr>
+                <th>Street</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+            </tr>
+            {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.street }}</td>
+				<td>{{ obj.latitude }}</td>
+				<td>{{ obj.longitude }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>
