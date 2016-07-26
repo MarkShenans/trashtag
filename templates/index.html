@@ -1,25 +1,24 @@
 <!doctype html>
 <html lang="en">
     <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 		<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
 		<script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
     </head>
     <body>
+	    <nav>
+            <a href="http://www.trashtagproject.org/#modern-organic-thai">
+                <img src="{{ url_for('static', filename='trashtag.png') }}">
+            </a>
+        </nav>
+        <header>
+            <h1>Trashtag</h1>
+            <div class="byline">
+                By <a href="http://www.trashtagproject.org/#modern-organic-thai">The Trashtag project</a>
+            </div>
+        </header>
 	    <div id="map" style="width:100%; height:500px;"></div>
-        <h1>Trashtag</h1>
-		<table border=1 cellpadding=7>
-            <tr>
-                <th>Street</th>
-				<th>Latitude</th>
-				<th>Longitude</th>
-            </tr>
-            {% for obj in object_list %}
-            <tr>
-                <td>{{ obj.street }}</td>
-				<td>{{ obj.latitude }}</td>
-				<td>{{ obj.longitude }}</td>
-            </tr>
-            {% endfor %}
         </table>
 		<script>
 		var mymap = L.map('map').setView([38.63, -121.43], 9);
@@ -36,8 +35,8 @@
                 {
                   "type": "Feature",
                   "properties": {
-				  "name": "Street",
-                    //"street": "{{ obj.street }}",
+					"name": "Street",
+					"street": "{{ obj.street }}",
                   },
                   "geometry": {
                     "type": "Point",
@@ -47,12 +46,8 @@
                 {% endfor %}
               ]
             };
-			var dataLayer = L.geoJson(data, {
-                onEachFeature: function(feature, layer) {
-                    layer.bindPopup(feature.properties.street);
-                }
-            });
-            L.geoJson(data).addTo(mymap);
+			L.geoJson(data).addTo(mymap);
+
 		</script>
     </body>
 </html>
